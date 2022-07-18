@@ -1,4 +1,4 @@
-package ru.opencode.practice.booking;
+package ru.opencode.practice.booking.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

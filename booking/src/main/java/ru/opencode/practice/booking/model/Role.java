@@ -1,2 +1,6 @@
-package ru.opencode.practice.booking;public enum Role {
+package ru.opencode.practice.booking.model;
+
+public enum Role {
+    Admin,
+    User
 }
