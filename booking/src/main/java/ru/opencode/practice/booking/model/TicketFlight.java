@@ -18,7 +18,7 @@ public class TicketFlight {
     @JoinColumn(name = "ticket_no")
     private Ticket ticket;
     @Id
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
     @Column(name = "fare_conditions")
