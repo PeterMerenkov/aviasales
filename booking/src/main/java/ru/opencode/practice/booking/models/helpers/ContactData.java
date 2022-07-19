@@ -1,4 +1,4 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.booking.models.helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

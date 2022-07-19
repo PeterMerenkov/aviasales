@@ -1,21 +1,22 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.booking.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "bookings")
+@Table(name = "bookings", schema = "bookings")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString
 public class Booking {
     @Id
     @Column(name = "book_ref")

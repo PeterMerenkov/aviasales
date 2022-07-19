@@ -1,13 +1,14 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.booking.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.opencode.practice.booking.models.helpers.BoardingPassId;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "boarding_passes")
+@Table(name = "boarding_passes", schema = "bookings")
 @IdClass(BoardingPassId.class)
 @NoArgsConstructor
 @AllArgsConstructor

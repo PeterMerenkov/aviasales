@@ -1,4 +1,4 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.booking.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "flights")
+@Table(name = "flights", schema = "bookings")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

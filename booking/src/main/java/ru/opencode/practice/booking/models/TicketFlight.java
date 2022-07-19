@@ -1,13 +1,14 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.booking.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.opencode.practice.booking.models.helpers.TicketFlightId;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ticket_flights")
+@Table(name = "ticket_flights", schema = "bookings")
 @IdClass(TicketFlightId.class)
 @NoArgsConstructor
 @AllArgsConstructor
