@@ -1,4 +1,4 @@
-package ru.opencode.practice.booking.model;
+package ru.opencode.practice.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
