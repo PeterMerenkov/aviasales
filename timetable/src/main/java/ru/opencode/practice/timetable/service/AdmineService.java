@@ -6,6 +6,10 @@ import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8471d9b3744ced8329886824fcb439f2a9a90e6c
 @Service
 public interface AdmineService {
     List<Flight> searchPlain(String in, String out,String date);
