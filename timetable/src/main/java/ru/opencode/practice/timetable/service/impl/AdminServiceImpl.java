@@ -36,12 +36,8 @@ public class AdminServiceImpl implements AdmineService {
     @Override
     public Boolean checkStatusPlainById(long id) {
 
-        if (flightRepo.findAll().stream().filter(x -> x.getId().equals(id)
-                        && x.getStatus().equals("ok")).
-                findAny().isPresent())
-            return true;
-        else
-            return false;
+        return flightRepo.findAll().stream().anyMatch(x -> x.getId().equals(id)
+                && x.getStatus().equals("ok"));
     }
 
     @Override
@@ -62,5 +58,10 @@ public class AdminServiceImpl implements AdmineService {
     @Override
     public Flight getFlightByID(long id) {
         return flightRepo.findById(id).get();
+    }
+
+    @Override
+    public User getUserById(long id) {
+        return userRepo.findById(id).get();
     }
 }

@@ -1,7 +1,6 @@
 package ru.opencode.practice.timetable.service;
 
 import ru.opencode.practice.timetable.model.Flight;
-import ru.opencode.practice.timetable.model.Ticket;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
 
@@ -17,6 +16,8 @@ public interface AdmineService {
     List<TicketFlight> getFreeTicketPlain(long id);
 
     Flight getFlightByID(long id);
+
+    User getUserById(long id);
 
 
 }

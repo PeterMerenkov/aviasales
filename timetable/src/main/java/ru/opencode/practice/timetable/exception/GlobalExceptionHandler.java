@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ExceptionData> handleExeption(NoSuchCountExeption exeption) {
         ExceptionData exceptionData = new ExceptionData();
         exceptionData.setInfo(exeption.getMessage());
-        return new ResponseEntity<>(exceptionData, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionData, HttpStatus.I_AM_A_TEAPOT);
     }
 
     @ExceptionHandler

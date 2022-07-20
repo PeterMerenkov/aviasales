@@ -19,15 +19,22 @@ public class OperationController {
     public List<User> getUsers() {
         return admineService.getUsers();
     }
+    @PostMapping
+    @RequestMapping("/api/{id}")
+    public User getUser(@PathVariable long id){
+        return admineService.getUserById(id);
+    }
 
     @PostMapping
-    List<Flight> getAirPlain(@PathVariable String in,
-                             @PathVariable String out) {
+    @RequestMapping("/api/getAirPlain")
+    List<Flight> getAirPlain(@RequestBody String in,
+                             @RequestBody String out) {
         return admineService.searchPlain(in, out);
 
     }
 
     @PostMapping
+    @RequestMapping("/api/getFlightById/{id}")
     Flight getFlightById(@PathVariable long id) {
         if (admineService.checkStatusPlainById(id))
             return admineService.getFlightByID(id);
