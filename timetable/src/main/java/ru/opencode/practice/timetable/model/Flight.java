@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -25,14 +22,21 @@ public class Flight {
     private Timestamp scheduledDeparture;
     @Column(name = "scheduled_arrival")
     private Timestamp scheduledArrival;
-    @Column(name = "departure_airport")
-    private String departureAirport;
-    @Column(name = "arrival_airport")
-    private String arrivalAirport;
+
+    @ManyToOne
+    @JoinColumn(name = "departure_airport")
+    private Airports departureAirport;
+
+    @ManyToOne
+    @JoinColumn(name = "arrival_airport")
+    private Airports arrivalAirport;
+
     @Column(name = "status")
     private String status;
-    @Column(name = "aircraft_code")
-    private String aircraftCode;
+    
+    @ManyToOne
+    @JoinColumn(name = "aircraft_code")
+    private Aircrafts aircraftCode;
     @Column(name = "actual_departure")
     private Timestamp actualDeparture;
     @Column(name = "actual_arrival")

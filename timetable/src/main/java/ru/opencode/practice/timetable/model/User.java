@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Data
-@Table(name = "passenger")
+@Table(name = "passenger",  schema = "bookings")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
