@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 	<modules>
@@ -29,26 +29,26 @@
 
 	<dependencyManagement>
 		<dependencies>
-<!--			<dependency>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-starter-web</artifactId>-->
-<!--				<version>${spring.boot.dependencies.version}</version>-->
-<!--				<scope>import</scope>-->
-<!--				<type>pom</type>-->
-<!--			</dependency>-->
+			<!--			<dependency>-->
+			<!--				<groupId>org.springframework.boot</groupId>-->
+			<!--				<artifactId>spring-boot-starter-web</artifactId>-->
+			<!--				<version>${spring.boot.dependencies.version}</version>-->
+			<!--				<scope>import</scope>-->
+			<!--				<type>pom</type>-->
+			<!--			</dependency>-->
 
-<!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa &ndash;&gt;-->
-<!--			<dependency>-->
-<!--				<groupId>org.springframework.data</groupId>-->
-<!--				<artifactId>spring-data-jpa</artifactId>-->
-<!--				<version>2.7.1</version>-->
-<!--			</dependency>-->
-<!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
-<!--			<dependency>-->
-<!--				<groupId>org.postgresql</groupId>-->
-<!--				<artifactId>postgresql</artifactId>-->
-<!--				<version>42.4.0</version>-->
-<!--			</dependency>-->
+			<!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa &ndash;&gt;-->
+			<!--			<dependency>-->
+			<!--				<groupId>org.springframework.data</groupId>-->
+			<!--				<artifactId>spring-data-jpa</artifactId>-->
+			<!--				<version>2.7.1</version>-->
+			<!--			</dependency>-->
+			<!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
+			<!--			<dependency>-->
+			<!--				<groupId>org.postgresql</groupId>-->
+			<!--				<artifactId>postgresql</artifactId>-->
+			<!--				<version>42.4.0</version>-->
+			<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -57,8 +57,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring.boot.dependencies.version}</version>
-<!--			<scope>import</scope>-->
-<!--			<type>pom</type>-->
+			<!--			<scope>import</scope>-->
+			<!--			<type>pom</type>-->
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
@@ -83,16 +83,11 @@
 			<version>2.13.3</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.1.4.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.2.3.Final</version>
+			<groupId>com.vladmihalcea</groupId>
+			<artifactId>hibernate-types-52</artifactId>
+			<version>2.16.3</version>
 		</dependency>
 
 		<dependency>
@@ -118,12 +113,12 @@
 			</plugins>
 		</pluginManagement>
 
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
+		<!--		<plugins>-->
+		<!--			<plugin>-->
+		<!--				<groupId>org.springframework.boot</groupId>-->
+		<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+		<!--			</plugin>-->
+		<!--		</plugins>-->
 	</build>
 
 </project>

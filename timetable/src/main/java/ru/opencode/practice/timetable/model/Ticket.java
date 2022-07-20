@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonType;
 
 import javax.persistence.*;
 
@@ -25,6 +27,7 @@ public class Ticket {
     private String passengerId;
     @Column(name = "passenger_name")
     private String passengerName;
+
     @Type(type = "com.vladmihalcea.hibernate.type.json.JsonType")
     @Column(name = "contact_data")
     private String contactData;

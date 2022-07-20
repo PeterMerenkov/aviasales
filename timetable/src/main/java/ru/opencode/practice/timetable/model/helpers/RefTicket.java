@@ -13,5 +13,4 @@ public class RefTicket {
     List<TicketFlight> ticketFlights;
     double totalPrice;
     int countTicket;
-
 }
