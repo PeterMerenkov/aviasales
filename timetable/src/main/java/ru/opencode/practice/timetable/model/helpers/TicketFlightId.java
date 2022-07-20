@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ru.opencode.practice.booking.models.Flight;
-import ru.opencode.practice.booking.models.Ticket;
+import ru.opencode.practice.timetable.model.Flight;
+import ru.opencode.practice.timetable.model.Ticket;
+
 
 import java.io.Serializable;
 

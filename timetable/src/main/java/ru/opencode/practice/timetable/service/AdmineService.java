@@ -7,7 +7,7 @@ import ru.opencode.practice.timetable.model.User;
 import java.util.List;
 
 public interface AdmineService {
-    List<Flight> searchPlain(String in, String out);
+    List<Flight> searchPlain(String in, String out,String date);
 
     Boolean checkStatusPlainById(long id);
 

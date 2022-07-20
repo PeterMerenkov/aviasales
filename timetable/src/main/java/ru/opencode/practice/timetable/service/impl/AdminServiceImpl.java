@@ -23,12 +23,12 @@ public class AdminServiceImpl implements AdmineService {
     private UserRepo userRepo;
 
 
-
     @Override
-    public List<Flight> searchPlain(String in, String out) {
+    public List<Flight> searchPlain(String in, String out, String date) {
         List<Flight> searchFlight = flightRepo.findAll().stream().filter(x -> x.getStatus().equals("ok")
                         && x.getArrivalAirport().contains(in)
-                        && x.getDepartureAirport().contains(out))
+                        && x.getDepartureAirport().contains(out)
+                        && x.getActualArrival().equals(date))
                 .collect(Collectors.toList());
         return searchFlight;
     }
@@ -50,7 +50,7 @@ public class AdminServiceImpl implements AdmineService {
     public List<TicketFlight> getFreeTicketPlain(long id) {
         List<TicketFlight> ticketFlights = ticketRepo.findAll().
                 stream().
-                filter(x -> x.getFlight().getId().equals(id)&&x.getConditions().equals("")).
+                filter(x -> x.getFlight().getId().equals(id) && x.getConditions().equals("")).
                 collect(Collectors.toList());
         return ticketFlights;
     }
