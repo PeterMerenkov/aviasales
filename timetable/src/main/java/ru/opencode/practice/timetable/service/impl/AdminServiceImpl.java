@@ -25,19 +25,15 @@ public class AdminServiceImpl implements AdmineService {
 
     @Override
     public List<Flight> searchPlain(String in, String out, String date) {
-        List<Flight> searchFlight = flightRepo.findAll().stream().filter(x -> x.getStatus().equals("ok")
-                        && x.getArrivalAirport().contains(in)
-                        && x.getDepartureAirport().contains(out)
-                        && x.getActualArrival().equals(date))
-                .collect(Collectors.toList());
-        return searchFlight;
+
+        return flightRepo.getPlain(in, out, date);
     }
 
     @Override
     public Boolean checkStatusPlainById(long id) {
-
-        return flightRepo.findAll().stream().anyMatch(x -> x.getId().equals(id)
-                && x.getStatus().equals("ok"));
+        if (flightRepo.chekStatusPlain(id).getStatus().equals("ok"))
+            return true;
+        else return false;
     }
 
     @Override
