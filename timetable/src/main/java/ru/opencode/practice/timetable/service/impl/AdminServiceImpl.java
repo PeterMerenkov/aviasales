@@ -10,6 +10,7 @@ import ru.opencode.practice.timetable.repos.TicketRepo;
 import ru.opencode.practice.timetable.repos.UserRepo;
 import ru.opencode.practice.timetable.service.AdmineService;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +25,9 @@ public class AdminServiceImpl implements AdmineService {
 
 
     @Override
-    public List<Flight> searchPlain(String in, String out, String date) {
-        return flightRepo.getPlain(in, out, date);
+    public List<Flight> searchPlain(String in, String out, Timestamp date) {
+        List<Flight> flights = flightRepo.getPlain(in, out, date);
+        return flights;
     }
 
     @Override
