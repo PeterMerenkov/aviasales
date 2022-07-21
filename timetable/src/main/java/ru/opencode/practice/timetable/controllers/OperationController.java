@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +38,6 @@ public class OperationController {
     public List<Flight> getAirPlain(@PathVariable String in,
                                     @PathVariable String out,
                                     @RequestBody String date) throws ParseException {
-        date = date.replace("\r\n", "");
         DateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss.SSS Z" );
         Date testDate = df.parse(date);
         
