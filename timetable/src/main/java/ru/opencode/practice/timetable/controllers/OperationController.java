@@ -10,6 +10,11 @@ import ru.opencode.practice.timetable.model.helpers.AirRequest;
 import ru.opencode.practice.timetable.model.helpers.RefTicket;
 import ru.opencode.practice.timetable.service.AdmineService;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,8 +36,12 @@ public class OperationController {
 
     @PostMapping
     @RequestMapping("/getAirPlain")
-    public List<Flight> getAirPlain(@RequestBody AirRequest request) {
-        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), request.date());
+    public List<Flight> getAirPlain(@RequestBody AirRequest request) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS Z");
+        Date testDate = df.parse(request.date());
+
+        Timestamp ts = new Timestamp(testDate.getTime());
+        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), ts);
     }
 
     @PostMapping
@@ -48,10 +57,10 @@ public class OperationController {
     @PostMapping
     @RequestMapping("/buyTicket")
     public RefTicket buyTickets(@RequestBody List<User> users,
-                               @RequestBody int countTicket,
-                               @RequestBody List<TicketFlight> ticketFlight) {
-        int totalPrice = ticketFlight.stream().mapToInt(x->x.getPrice().intValue()).sum();
-        return new RefTicket(users,ticketFlight,totalPrice,countTicket);
+                                @RequestBody int countTicket,
+                                @RequestBody List<TicketFlight> ticketFlight) {
+        int totalPrice = ticketFlight.stream().mapToInt(x -> x.getPrice().intValue()).sum();
+        return new RefTicket(users, ticketFlight, totalPrice, countTicket);
 
     }
 }

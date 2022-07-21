@@ -5,15 +5,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.opencode.practice.timetable.model.Flight;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
 public interface FlightRepo extends JpaRepository<Flight, Long> {
     @Query(nativeQuery = true, value = "Select * from Flight WHERE (arrival_airport = (?1) " +
-            "AND (departure_airport = (?1)) AND  (actual_arrival = (?1)))" +
+            "AND (departure_airport = (?2)) AND  (actual_arrival = (?3)))" +
             "and not status = 'Arrived'"
     )
-     List<Flight> getPlain(String in,String out,String date);
+     List<Flight> getPlain(String in, String out, Timestamp date);
 
 
     @Query(nativeQuery = true,value = "SELECT * from Flight where id =(?1)")
