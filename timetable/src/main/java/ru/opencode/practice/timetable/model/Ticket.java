@@ -26,7 +26,8 @@ public class Ticket {
     private String passengerId;
     @Column(name = "passenger_name")
     private String passengerName;
-//    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonType")
+
+    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonType")
     @Column(name = "contact_data")
     private String contactData;
 

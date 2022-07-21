@@ -7,11 +7,12 @@ import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 @Service
 public interface AdmineService {
-    List<Flight> searchPlain(String in, String out, Timestamp date);
+    List<Flight> searchPlain(String in, String out, String date) throws ParseException;
 
     Boolean checkStatusPlainById(long id);
 

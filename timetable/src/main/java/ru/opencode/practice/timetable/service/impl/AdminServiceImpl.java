@@ -13,6 +13,11 @@ import ru.opencode.practice.timetable.repos.UserRepo;
 import ru.opencode.practice.timetable.service.AdmineService;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,15 +34,25 @@ public class AdminServiceImpl implements AdmineService {
 
 
     @Override
-    public List<Flight> searchPlain(String in, String out, Timestamp date) {
+    public List<Flight> searchPlain(String in, String out, String date) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date firstDate = df.parse(date);
 
-        return flightRepo.getPlain(in, out, date);
+        Calendar c = Calendar.getInstance();
+        c.setTime(firstDate);
+        c.add(Calendar.DATE, 1);
+        String output = df.format(c.getTime());
+        Date secondDate = df.parse(output);
 
+        Timestamp firstDateT = new Timestamp(firstDate.getTime());
+        Timestamp secondDateT = new Timestamp(secondDate.getTime());
+
+        return flightRepo.getPlain(in, out, firstDateT, secondDateT);
     }
 
     @Override
     public Boolean checkStatusPlainById(long id) {
-        if (flightRepo.chekStatusPlain(id).getStatus().equals("ok"))
+        if (!flightRepo.checkStatusPlain(id).getStatus().equals("Arrived"))
             return true;
         else return false;
     }
@@ -59,7 +74,7 @@ public class AdminServiceImpl implements AdmineService {
 
     @Override
     public Flight getFlightByID(long id) {
-        return flightRepo.findById(id).get();
+        return flightRepo.checkStatusPlain(id);
     }
 
     @Override

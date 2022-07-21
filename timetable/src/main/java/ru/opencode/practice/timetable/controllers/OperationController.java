@@ -37,20 +37,16 @@ public class OperationController {
     @PostMapping
     @RequestMapping("/getAirPlain")
     public List<Flight> getAirPlain(@RequestBody AirRequest request) throws ParseException {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS Z");
-        Date testDate = df.parse(request.date());
-
-        Timestamp ts = new Timestamp(testDate.getTime());
-        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), ts);
+        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), request.date());
     }
 
-    @PostMapping
+    @GetMapping
     @RequestMapping("/getFlightById/{id}")
     public Flight getFlightById(@PathVariable long id) {
         if (admineService.checkStatusPlainById(id))
             return admineService.getFlightByID(id);
         else
-            throw new NoSuchCountExeption("Рейс отменен");
+            throw new NoSuchCountExeption("Рейс закончен");
     }
 
 }

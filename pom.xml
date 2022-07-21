@@ -75,6 +75,11 @@
             <version>42.4.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.16.2</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
@@ -98,7 +103,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+<<<<<<< HEAD
+            <version>2.7.1</version>
+=======
             <version>2.7.0</version>
+>>>>>>> b9beeafdc8c64f1f1796f57393876d396ce5bea9
         </dependency>
     </dependencies>
 
