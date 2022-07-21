@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/")
@@ -40,7 +39,7 @@ public class OperationController {
                                     @PathVariable String out,
                                     @RequestBody String date2) throws ParseException {
         date2 = date2.replace("\r\n", "");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS Z");
         Date parsedDate = dateFormat.parse(date2);
         Timestamp date = new java.sql.Timestamp(parsedDate.getTime());
 
