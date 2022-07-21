@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<<<<<<< HEAD
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
@@ -60,41 +61,129 @@
 			<!--			<scope>import</scope>-->
 			<!--			<type>pom</type>-->
 		</dependency>
+=======
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>booking</module>
+        <module>timetable</module>
+        <module>timetable</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>ru.opencode.practice</groupId>
+    <artifactId>aviasales</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>aviasales</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+        <spring.boot.maven.plugin.version>2.7.1</spring.boot.maven.plugin.version>
+        <spring.boot.dependencies.version>2.7.1</spring.boot.dependencies.version>
+    </properties>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.1</version>
-		</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!--			<dependency>-->
+            <!--				<groupId>org.springframework.boot</groupId>-->
+            <!--				<artifactId>spring-boot-starter-web</artifactId>-->
+            <!--				<version>${spring.boot.dependencies.version}</version>-->
+            <!--				<scope>import</scope>-->
+            <!--				<type>pom</type>-->
+            <!--			</dependency>-->
 
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.4.0</version>
-		</dependency>
+            <!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa &ndash;&gt;-->
+            <!--			<dependency>-->
+            <!--				<groupId>org.springframework.data</groupId>-->
+            <!--				<artifactId>spring-data-jpa</artifactId>-->
+            <!--				<version>2.7.1</version>-->
+            <!--			</dependency>-->
+            <!--			&lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
+            <!--			<dependency>-->
+            <!--				<groupId>org.postgresql</groupId>-->
+            <!--				<artifactId>postgresql</artifactId>-->
+            <!--				<version>42.4.0</version>-->
+            <!--			</dependency>-->
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.dependencies.version}</version>
+            <!--			<scope>import</scope>-->
+            <!--			<type>pom</type>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+>>>>>>> 527195ab38b43b3c9f1b401d09d5c6532e63ed25
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.4.0</version>
+        </dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.13.3</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.3</version>
+        </dependency>
 
+<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
 		<dependency>
 			<groupId>com.vladmihalcea</groupId>
 			<artifactId>hibernate-types-52</artifactId>
 			<version>2.16.3</version>
 		</dependency>
+=======
+        <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.16.3</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+>>>>>>> 527195ab38b43b3c9f1b401d09d5c6532e63ed25
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.maven.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+<<<<<<< HEAD
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -120,5 +209,14 @@
 		<!--			</plugin>-->
 		<!--		</plugins>-->
 	</build>
+=======
+        <!--		<plugins>-->
+        <!--			<plugin>-->
+        <!--				<groupId>org.springframework.boot</groupId>-->
+        <!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+        <!--			</plugin>-->
+        <!--		</plugins>-->
+    </build>
+>>>>>>> 527195ab38b43b3c9f1b401d09d5c6532e63ed25
 
 </project>
