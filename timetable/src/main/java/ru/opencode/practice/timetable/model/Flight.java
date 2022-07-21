@@ -33,7 +33,7 @@ public class Flight {
 
     @Column(name = "status")
     private String status;
-    
+
     @ManyToOne
     @JoinColumn(name = "aircraft_code")
     private Aircrafts aircraftCode;
