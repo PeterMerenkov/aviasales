@@ -53,14 +53,4 @@ public class OperationController {
             throw new NoSuchCountExeption("Рейс отменен");
     }
 
-    //надо тестить
-    @PostMapping
-    @RequestMapping("/buyTicket")
-    public RefTicket buyTickets(@RequestBody List<User> users,
-                                @RequestBody int countTicket,
-                                @RequestBody List<TicketFlight> ticketFlight) {
-        int totalPrice = ticketFlight.stream().mapToInt(x -> x.getPrice().intValue()).sum();
-        return new RefTicket(users, ticketFlight, totalPrice, countTicket);
-
-    }
 }
