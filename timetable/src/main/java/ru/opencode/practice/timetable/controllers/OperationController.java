@@ -10,9 +10,10 @@ import ru.opencode.practice.timetable.model.helpers.RefTicket;
 import ru.opencode.practice.timetable.service.AdmineService;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -37,13 +38,13 @@ public class OperationController {
     @RequestMapping("/getAirPlain/{in}/{out}")
     public List<Flight> getAirPlain(@PathVariable String in,
                                     @PathVariable String out,
-                                    @RequestBody String date2) throws ParseException {
-        date2 = date2.replace("\r\n", "");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS Z");
-        Date parsedDate = dateFormat.parse(date2);
-        Timestamp date = new java.sql.Timestamp(parsedDate.getTime());
-
-        return admineService.searchPlain(in, out, date);
+                                    @RequestBody String date) throws ParseException {
+        date = date.replace("\r\n", "");
+        DateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss.SSS Z" );
+        Date testDate = df.parse(date);
+        
+        Timestamp ts = new Timestamp(testDate.getTime());
+        return admineService.searchPlain(in, out, ts);
     }
 
     @PostMapping
