@@ -2,16 +2,17 @@ package ru.opencode.practice.timetable.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.opencode.practice.timetable.model.Airports;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.repos.AirportRepo;
 import ru.opencode.practice.timetable.repos.FlightRepo;
 import ru.opencode.practice.timetable.repos.TicketRepo;
 import ru.opencode.practice.timetable.repos.UserRepo;
 import ru.opencode.practice.timetable.service.AdmineService;
 
 import java.sql.Timestamp;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,12 +24,13 @@ public class AdminServiceImpl implements AdmineService {
     private TicketRepo ticketRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private AirportRepo airportRepo;
 
 
     @Override
     public List<Flight> searchPlain(String in, String out, Timestamp date) {
-        List<Flight> flights = flightRepo.getPlain(in, out, date);
-        return flights;
+        return flightRepo.getPlain(in, out, date);
     }
 
     @Override
@@ -61,5 +63,10 @@ public class AdminServiceImpl implements AdmineService {
     @Override
     public User getUserById(long id) {
         return userRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Airports> serchAirport(String city, String airport_name) {
+        return airportRepo.serchAirport(city,airport_name);
     }
 }

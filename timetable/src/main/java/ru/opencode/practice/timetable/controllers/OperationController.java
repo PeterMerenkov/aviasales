@@ -6,6 +6,7 @@ import ru.opencode.practice.timetable.exception.NoSuchCountExeption;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.model.helpers.AirRequest;
 import ru.opencode.practice.timetable.model.helpers.RefTicket;
 import ru.opencode.practice.timetable.service.AdmineService;
 
@@ -33,16 +34,13 @@ public class OperationController {
         return admineService.getUserById(id);
     }
 
-    @PostMapping
-    @RequestMapping("/getAirPlain/{in}/{out}")
-    public List<Flight> getAirPlain(@PathVariable String in,
-                                    @PathVariable String out,
-                                    @RequestBody String date) throws ParseException {
-        DateFormat df = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss.SSS Z" );
-        Date testDate = df.parse(date);
-        
+    @RequestMapping("/getAirPlain")
+    public List<Flight> getAirPlain(@RequestBody AirRequest request) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS Z");
+        Date testDate = df.parse(request.date());
+
         Timestamp ts = new Timestamp(testDate.getTime());
-        return admineService.searchPlain(in, out, ts);
+        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), ts);
     }
 
     @PostMapping
@@ -58,10 +56,10 @@ public class OperationController {
     @PostMapping
     @RequestMapping("/buyTicket")
     public RefTicket buyTickets(@RequestBody List<User> users,
-                               @RequestBody int countTicket,
-                               @RequestBody List<TicketFlight> ticketFlight) {
-        int totalPrice = ticketFlight.stream().mapToInt(x->x.getPrice().intValue()).sum();
-        return new RefTicket(users,ticketFlight,totalPrice,countTicket);
+                                @RequestBody int countTicket,
+                                @RequestBody List<TicketFlight> ticketFlight) {
+        int totalPrice = ticketFlight.stream().mapToInt(x -> x.getPrice().intValue()).sum();
+        return new RefTicket(users, ticketFlight, totalPrice, countTicket);
 
     }
 }
