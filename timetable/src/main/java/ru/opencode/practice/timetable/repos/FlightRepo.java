@@ -10,8 +10,11 @@ import java.util.List;
 @Repository
 public interface FlightRepo extends JpaRepository<Flight, Long> {
     @Query(nativeQuery = true, value = "Select * from Flight WHERE (arrival_airport = (?1) " +
-            "AND (arrival_airport = (?1)) AND  (actual_arrival = (?1)))")
+            "AND (departure_airport = (?1)) AND  (actual_arrival = (?1)))" +
+            "and not status = 'Arrived'"
+    )
      List<Flight> getPlain(String in,String out,String date);
+
 
     @Query(nativeQuery = true,value = "SELECT * from Flight where id =(?1)")
     Flight chekStatusPlain(long id);

@@ -2,9 +2,11 @@ package ru.opencode.practice.timetable.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.opencode.practice.timetable.model.Airports;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.repos.AirportRepo;
 import ru.opencode.practice.timetable.repos.FlightRepo;
 import ru.opencode.practice.timetable.repos.TicketRepo;
 import ru.opencode.practice.timetable.repos.UserRepo;
@@ -21,21 +23,15 @@ public class AdminServiceImpl implements AdmineService {
     private TicketRepo ticketRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private AirportRepo airportRepo;
 
 
     @Override
     public List<Flight> searchPlain(String in, String out, String date) {
-<<<<<<< HEAD
 
         return flightRepo.getPlain(in, out, date);
-=======
-        List<Flight> searchFlight = flightRepo.findAll().stream().filter(x -> x.getStatus().equals("ok")
-                        && x.getArrivalAirport().getAirportName().contains(in)
-                        && x.getDepartureAirport().getAirportName().contains(out)
-                        && x.getActualArrival().toString().contains(date))
-                .collect(Collectors.toList());
-        return searchFlight;
->>>>>>> 8471d9b3744ced8329886824fcb439f2a9a90e6c
+
     }
 
     @Override
@@ -68,5 +64,10 @@ public class AdminServiceImpl implements AdmineService {
     @Override
     public User getUserById(long id) {
         return userRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Airports> serchAirport(String city, String airport_name) {
+        return airportRepo.serchAirport(city,airport_name);
     }
 }

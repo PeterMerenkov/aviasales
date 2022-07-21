@@ -6,6 +6,7 @@ import ru.opencode.practice.timetable.exception.NoSuchCountExeption;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.model.helpers.AirRequest;
 import ru.opencode.practice.timetable.model.helpers.RefTicket;
 import ru.opencode.practice.timetable.service.AdmineService;
 
@@ -30,10 +31,8 @@ public class OperationController {
 
     @PostMapping
     @RequestMapping("/getAirPlain")
-    public List<Flight> getAirPlain(@RequestBody String in,
-                                    @RequestBody String out,
-                                    @RequestBody String date) {
-        return admineService.searchPlain(in, out, date);
+    public List<Flight> getAirPlain(@RequestBody AirRequest request) {
+        return admineService.searchPlain(request.arrival_airport(), request.departure_airport(), request.date());
     }
 
     @PostMapping
