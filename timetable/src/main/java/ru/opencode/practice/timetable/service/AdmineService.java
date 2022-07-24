@@ -5,6 +5,8 @@ import ru.opencode.practice.timetable.model.Airports;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.model.helpers.FlightBookingData;
+import ru.opencode.practice.timetable.model.helpers.FlightBookingDataProjection;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -25,5 +27,5 @@ public interface AdmineService {
     User getUserById(long id);
     List<Airports> serchAirport(String city, String airport_name);
 
-
+    List<FlightBookingDataProjection> takeFlights(String arrivalCity, String departureCity, String fareConditions, int amount);
 }

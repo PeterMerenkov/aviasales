@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class TicketBookingData {
-    List<FlightBookingData> flightBookingDataList;
+    private List<FlightBookingData> flightBookingDataList;
 }

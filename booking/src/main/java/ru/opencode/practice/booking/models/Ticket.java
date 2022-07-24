@@ -31,7 +31,7 @@ public class Ticket {
     private String passengerName;
     @Type(type = "com.vladmihalcea.hibernate.type.json.JsonType")
     @Column(name = "contact_data")
-    private String contactData;
+    private ContactData contactData;
 
     @ManyToOne
     @JoinColumn(name = "book_ref")

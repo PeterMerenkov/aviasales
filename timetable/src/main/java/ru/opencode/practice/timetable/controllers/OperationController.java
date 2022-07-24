@@ -6,8 +6,7 @@ import ru.opencode.practice.timetable.exception.NoSuchCountExeption;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
-import ru.opencode.practice.timetable.model.helpers.AirRequest;
-import ru.opencode.practice.timetable.model.helpers.RefTicket;
+import ru.opencode.practice.timetable.model.helpers.*;
 import ru.opencode.practice.timetable.service.AdmineService;
 
 import java.sql.Timestamp;
@@ -49,4 +48,9 @@ public class OperationController {
             throw new NoSuchCountExeption("Рейс закончен");
     }
 
+    @PostMapping
+    @RequestMapping("/getFlights")
+    public List<FlightBookingDataProjection> takeFlights(@RequestBody HumanNeeds info) {
+        return admineService.takeFlights(info.arrival_city(), info.departure_city(), info.fare_conditions(), info.amount());
+    }
 }

@@ -6,6 +6,7 @@ import ru.opencode.practice.timetable.model.Airports;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.model.helpers.FlightBookingDataProjection;
 import ru.opencode.practice.timetable.repos.AirportRepo;
 import ru.opencode.practice.timetable.repos.FlightRepo;
 import ru.opencode.practice.timetable.repos.TicketRepo;
@@ -85,5 +86,10 @@ public class AdminServiceImpl implements AdmineService {
     @Override
     public List<Airports> serchAirport(String city, String airport_name) {
         return airportRepo.serchAirport(city,airport_name);
+    }
+
+    @Override
+    public List<FlightBookingDataProjection> takeFlights(String arrivalCity, String departureCity, String fareConditions, int amount) {
+        return flightRepo.flights(arrivalCity, departureCity, fareConditions, amount);
     }
 }

@@ -7,5 +7,8 @@ import ru.opencode.practice.booking.models.Ticket;
 import java.util.List;
 
 public interface TicketRepo extends JpaRepository<Ticket, String> {
-    public List<Ticket> findTopByOrderByNumberDesc();
+
+    Ticket findByNumber(String number);
+
+    List<Ticket> findTopByOrderByNumberDesc();
 }
