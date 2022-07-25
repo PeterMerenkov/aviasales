@@ -12,4 +12,7 @@ import java.util.List;
 public interface BookingRepo extends JpaRepository<Booking, String> {
     @Query(value = "select * from bookings.tickets limit 10", nativeQuery = true)
     List<Ticket> getTickets();
+
+    @Query("select max(ref) from Booking")
+    String getMaxRef();
 }

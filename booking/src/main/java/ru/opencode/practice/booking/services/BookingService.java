@@ -2,7 +2,6 @@ package ru.opencode.practice.booking.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -66,5 +65,38 @@ public class BookingService {
     public void createTicketFlight(TicketFlight ticketFlight) {
         ticketFlightRepo.save(ticketFlight);
         log.info("Saved TicketFlight - {}", ticketFlight);
+    }
+
+    public String getFreeTicketNum() {
+        Long digit = Long.parseLong(ticketRepo.getMaxTicketNum());
+        digit++;
+        String digitStr = digit.toString();
+        int digitLength = 13;
+
+        StringBuilder zeros = new StringBuilder();
+        if (digitLength > digitStr.length()) {
+            for (int i = 0; i < (digitLength - digitStr.length()); i++) {
+                zeros.append("0");
+            }
+        }
+
+
+        return zeros + digitStr;
+    }
+
+    public String getFreeBookRef() {
+        Integer digit = Integer.parseInt(repo.getMaxRef(), 16);
+        digit++;
+        String digitStr = Integer.toHexString(digit);
+        int digitLength = 6;
+
+        StringBuilder zeros = new StringBuilder();
+        if (digitLength > digitStr.length()) {
+            for (int i = 0; i < (digitLength - digitStr.length()); i++) {
+                zeros.append("0");
+            }
+        }
+
+        return zeros + digitStr;
     }
 }

@@ -11,15 +11,15 @@ import ru.opencode.practice.booking.models.Booking;
 import ru.opencode.practice.booking.models.Flight;
 import ru.opencode.practice.booking.models.Ticket;
 import ru.opencode.practice.booking.models.TicketFlight;
-import ru.opencode.practice.booking.models.helpers.ContactData;
-import ru.opencode.practice.booking.models.helpers.FlightBookingData;
-import ru.opencode.practice.booking.models.helpers.TicketBookingData;
-import ru.opencode.practice.booking.models.helpers.TicketFlightId;
+import ru.opencode.practice.booking.models.helpers.*;
 import ru.opencode.practice.booking.services.BookingService;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -27,75 +27,82 @@ import java.util.List;
 @SessionAttributes(value = "dataList")
 @Slf4j
 public class BookingController {
-    private BookingService service;
+    private final BookingService service;
 
     @Autowired
     public BookingController(BookingService service) {
         this.service = service;
     }
 
-    @PostMapping
-    public String index(@ModelAttribute("dataList") List<TicketBookingData> dataList) {
-        System.out.println(dataList);
-        System.out.println("test");
-        return "";
+    @PostMapping("test")
+    public String index(@ModelAttribute("dataList") List<TicketBookingData> dataList,
+                        @ModelAttribute("contactData") ContactDataWrapper cdw) {
+
+        double totalPrice = 0;
+        for(TicketBookingData tData : dataList) {
+            for(FlightBookingData fData : tData.getFlightBookingDataList()) {
+                totalPrice += fData.getPrice();
+            }
+        }
+
+        Booking booking = new Booking(service.getFreeBookRef(), new Timestamp(System.currentTimeMillis()), totalPrice);
+        service.createBooking(booking);
+
+        //------------------------------------------------------------------------------------------
+
+        for (int i = 0; i < dataList.size(); i++) {
+            TicketBookingData tData = dataList.get(i);
+
+            Ticket ticket = new Ticket(
+                    service.getFreeTicketNum(),
+                    cdw.getPassengerIdList().get(i),
+                    cdw.getPassengerNameList().get(i),
+                    cdw.getContactDataList().get(i),
+                    booking
+            );
+            service.createTicket(ticket);
+
+            for (FlightBookingData fData : tData.getFlightBookingDataList()) {
+                Flight flight = service.getFlightById(fData.getFlightId());
+
+                TicketFlight tf = new TicketFlight(
+                        new TicketFlightId(ticket, flight),
+                        fData.getConditions(),
+                        fData.getPrice()
+                );
+                service.createTicketFlight(tf);
+            }
+        }
+
+        return "redirect:/booking";
     }
 
     @GetMapping
 //    @Transactional
-    public String initData(@RequestBody List<TicketBookingData> dataList, Model model) {
-        //TODO обработка данных
+    public String initData(/*@RequestBody List<TicketBookingData> dataList,*/ Model model) {
+
+        List<TicketBookingData> dataList = new ArrayList<>();
+        TicketBookingData tbd = new TicketBookingData();
+        tbd.setFlightBookingDataList(Arrays.asList(
+                new FlightBookingData(31865, "Economy", 22.5, 0, ""),
+                new FlightBookingData(13524, "Business", 22.5, 0, "")
+        ));
+        dataList.add(tbd);
 
         model.addAttribute("dataList", dataList);
 
-//        double totalPrice = 0;
-//        for(TicketBookingData tData : dataList) {
-//            for(FlightBookingData fData : tData.getFlightBookingDataList()) {
-//                totalPrice += fData.getPrice();
-//            }
-//        }
 
+        List<ContactData> contactData = new ArrayList<>();
+        List<String> passengerIdList = new ArrayList<>();
+        List<String> passengerNameList = new ArrayList<>();
+        for (int i = 0; i < dataList.size(); i++) {
+            contactData.add(new ContactData());
+            passengerIdList.add("");
+            passengerNameList.add("");
+        }
+        ContactDataWrapper cdw = new ContactDataWrapper(contactData, passengerIdList, passengerNameList);
 
-//        Booking b = new Booking("refik", new Timestamp(System.currentTimeMillis()), totalPrice);
-//        model.addAttribute("booking", b);
-//        service.createBooking(b);
-
-
-//        List<Ticket> p = service.getTickets();
-//        log.info(service.getTickets().toString());
-
-
-//        Ticket t = service.getTicketById("0005432425932");
-//        Flight f = service.getFlightById(13287);
-//        TicketFlight tf = service.getTicketFlightById(t, f);
-//        System.out.println("test");
-
-
-//        for(TicketBookingData tData : dataList) {
-//
-//            Ticket t = new Ticket("0006432006731", "1116 105350", "PETER MERENKOV", new ContactData("+79115620522", null), b);
-//            service.createTicket(t);
-//            for(FlightBookingData fData : tData.getFlightBookingDataList()) {
-//                Flight f = service.getFlightById(fData.getFlightId());
-//
-//                TicketFlight tf = new TicketFlight(new TicketFlightId(t, f), fData.getConditions(), fData.getPrice());
-//                service.createTicketFlight(tf);
-//            }
-//        }
-
-//        for (int i = 0; i < dataList.size(); i++) {
-//            TicketBookingData tData = dataList.get(i);
-//            String passengerId = "";
-//            model.addAttribute("id" + i, passengerId);
-//            String passengerName = "";
-//            model.addAttribute("name" + i, passengerName);
-//
-//            model.addAttribute("contactData", new ContactData());
-//
-//        }
-
-
-
+        model.addAttribute("contactData", cdw);
 
         return "test";
     }
