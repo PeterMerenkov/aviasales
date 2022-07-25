@@ -1,17 +1,36 @@
 <!DOCTYPE HTML>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Бронирование билетов</title>
+        <title>Бронирование авиабилетов</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            div {
+                margin: 1rem 0;
+            }
+        </style>
     </head>
     <body>
-        <h1>TEST</h1>
+        <h2>Бронирование авиабилетов</h2>
 
 <!--        <div th:text="${booking}"></div>-->
 
-        <form action="#" th:action="@{/}" th:object="${dataList}" method="post">
+        <form action="#" th:action="@{/booking/test}" method="post">
 
-            <input type="submit">
+            <div th:each="cData : ${contactData.contactDataList}">
+                <h3 th:text="'Пассажир №' + ${cDataStat.index + 1}"></h3>
+
+                <div>Контактная информация:<br>
+                    <input th:field="${contactData.contactDataList[__${cDataStat.index}__].email}" value="" type="email" placeholder="Email">
+                    <input th:field="${contactData.contactDataList[__${cDataStat.index}__].phone}" value="" type="tel" placeholder="Телефон">
+                </div>
+
+                <div>Идентификация пассажира:<br>
+                    <input th:field="${contactData.passengerNameList[__${cDataStat.index}__]}" value="" type="text" placeholder="Имя Фамилия" required>
+                    <input th:field="${contactData.passengerIdList[__${cDataStat.index}__]}" value="" type="text" placeholder="Паспортные данные" required>
+                </div>
+            </div>
+
+            <button type="submit">Забронировать</button>
         </form>
     </body>
 </html>
