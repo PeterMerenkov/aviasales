@@ -16,23 +16,17 @@ public class GreetingContoller {
 
     @RequestMapping("searchGet")
     public String searchGet() {
-        return  "search";
+        return "search.html";
     }
 
     @PostMapping
     @RequestMapping("/getFlights")
-    public String takeFlights(@RequestBody HumanNeeds info, Model model,@PathVariable Test test) {
+    public String takeFlights(@RequestBody HumanNeeds info, Model model) {
         model.addAttribute("personTicketView", admineService.takeFlights(info.arrival_city(), info.departure_city(), info.fare_conditions(), info.amount(), info.skip()));
-        model.addAttribute("amount",info.amount());
-        model.addAttribute("1",1);
-        model.addAttribute("test",test);
-        System.out.printf("TESTINGGGGGGGGGGGGGGGGGGGGGGG\nTESTINGGGGGGGGGGGGGGGGG");
-        return  "search";
+        model.addAttribute("amount", info.amount());
+        model.addAttribute("a", 1);
+        
+        System.out.printf("TESTINGGGGGGGGGGGGGGGGGGGGGGG");
+        return "test.html";
     }
-
-}
-@Data
-class Test{
-    private String test;
-
 }
