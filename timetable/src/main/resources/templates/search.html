@@ -88,36 +88,48 @@
 </style>-->
 </head>
 <body>
-<div class = "form">
+<div class="form">
     <h2>Введите данные полета</h2>
-    <div class = "error-text" style = "padding: 8px 0; border-radius: 5px; color: #fa0505; text-align: center;">
-        <p id="textError" style = "display: none;">Неправильный логин или пароль</p>
+    <div class="error-text" style="padding: 8px 0; border-radius: 5px; color: #fa0505; text-align: center;">
+        <p id="textError" style="display: none;">Неправильный логин или пароль</p>
     </div>
     <form>
-        <div class = "input-form">
-            <input type = "text" required="required"
-                   name = "departure_city" id = "departure_city" placeholder = "Откуда">
+        <div class="input-form">
+            <input type="text" required="required"
+                   name="departure_city" id="departure_city" placeholder="Откуда">
 
-            <input type = "text" required="required"
-                   name = "arrival_city" id = "arrival_city" placeholder = "Куда">
+            <input type="text" required="required"
+                   name="arrival_city" id="arrival_city" placeholder="Куда">
+            <input type="text" required="required"
+                   name="test" id="test" placeholder="test">
 
-            <p><select name="fare_conditions" id = "fare_conditions">
+            <p><select name="fare_conditions" id="fare_conditions">
                 <option selected value="Economy">Эконом</option>
                 <option value="Business">Бизнес</option>
             </select>
 
             <fieldset>
                 <legend>Количество пассажиров</legend>
-                <input type = "number" required="required"
-                       name = "amount" id = "amount" min="1">
+                <input type="number" required="required"
+                       name="amount" id="amount" min="1">
             </fieldset>
-        <div class = "input-form">
-            <input type="submit" value="Найти" display="block" onclick="searchFlights()" />
-        </div>
+            <div class="input-form">
+                <input type="submit" value="Найти" display="block" onclick="searchFlights()"/>
+            </div>
+
         </div>
     </form>
+    <div th:text="${test}">Test</div>
 
-    <div th:text = "${personTicketView}"></div>
+    <div th:text="${personTicketView}">Test</div>
+    <div th:text="${amount}">Test</div>
+    <br>
+    <br>
+    <div th:text="|${amount}|">Test</div>
+
+    <h2 th:text="${personTicketView}"></h2>
+    <h2 th:text="${1}"></h2>
+
 
     <table>
         <tr>
@@ -153,5 +165,6 @@
                 }
             });
            }
-    </script>
+
+</script>
 </html>
