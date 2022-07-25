@@ -47,10 +47,4 @@ public class OperationController {
         else
             throw new NoSuchCountExeption("Рейс закончен");
     }
-
-    @PostMapping
-    @RequestMapping("/getFlights")
-    public  List<PersonTicketView> takeFlights(@RequestBody HumanNeeds info) {
-        return admineService.takeFlights(info.arrival_city(), info.departure_city(), info.fare_conditions(), info.amount(), info.skip());
-    }
 }
