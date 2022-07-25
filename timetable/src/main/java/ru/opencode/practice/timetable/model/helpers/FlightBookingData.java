@@ -19,4 +19,11 @@ public class FlightBookingData {
     private String seat_number;
     private Integer boarding_number;
 
+    public FlightBookingData(FlightBookingDataProjection projection) {
+        this.flight_id = projection.getFlight_Id();
+        this.conditions = projection.getConditions();
+        this.price = projection.getPrice();
+        this.seat_number = projection.getSeat_Number();
+        this.boarding_number = projection.getBoarding_Number();;
+    }
 }

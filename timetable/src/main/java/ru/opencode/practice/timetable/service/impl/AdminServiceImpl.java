@@ -6,7 +6,10 @@ import ru.opencode.practice.timetable.model.Airports;
 import ru.opencode.practice.timetable.model.Flight;
 import ru.opencode.practice.timetable.model.TicketFlight;
 import ru.opencode.practice.timetable.model.User;
+import ru.opencode.practice.timetable.model.helpers.FlightBookingData;
 import ru.opencode.practice.timetable.model.helpers.FlightBookingDataProjection;
+import ru.opencode.practice.timetable.model.helpers.PersonTicketView;
+import ru.opencode.practice.timetable.model.helpers.TicketBookingData;
 import ru.opencode.practice.timetable.repos.AirportRepo;
 import ru.opencode.practice.timetable.repos.FlightRepo;
 import ru.opencode.practice.timetable.repos.TicketRepo;
@@ -17,9 +20,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -89,7 +90,36 @@ public class AdminServiceImpl implements AdmineService {
     }
 
     @Override
-    public List<FlightBookingDataProjection> takeFlights(String arrivalCity, String departureCity, String fareConditions, int amount) {
-        return flightRepo.flights(arrivalCity, departureCity, fareConditions, amount);
+    public  List<PersonTicketView>takeFlights(String arrivalCity, String departureCity, String fareConditions, int amount, int skip) {
+        List<TicketBookingData> ticektsper = new LinkedList<>();
+        List<FlightBookingDataProjection> flights =  flightRepo.flights(arrivalCity, departureCity, fareConditions, amount, skip);
+
+        for(FlightBookingDataProjection flight: flights) {
+            List<FlightBookingDataProjection> tickets = new LinkedList<>();
+            tickets.add(flight);
+            ticektsper.add(new TicketBookingData(tickets));
+        }
+
+        List<PersonTicketView> views = chopped(ticektsper , amount);
+        List<TicketBookingData> forView = new LinkedList<>();
+        TicketBookingData ticketData = new TicketBookingData();
+        List<FlightBookingData> flightList = new LinkedList<>();
+        boolean first = true;
+
+        return views;
+    }
+        public  List<PersonTicketView> chopped(List<TicketBookingData> list, final int L) {
+        List<List<TicketBookingData>> parts = new ArrayList<List<TicketBookingData>>();
+        final int N = list.size();
+        for (int i = 0; i < N; i += L) {
+            parts.add(new ArrayList<TicketBookingData>(
+                    list.subList(i, Math.min(N, i + L)))
+            );
+        }
+            List<PersonTicketView> result = new LinkedList<>();
+        for(List<TicketBookingData> part: parts) {
+            result.add(new PersonTicketView(part));
+        }
+        return result;
     }
 }

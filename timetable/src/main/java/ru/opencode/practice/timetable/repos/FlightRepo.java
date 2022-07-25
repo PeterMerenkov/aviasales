@@ -60,10 +60,11 @@ public interface FlightRepo extends JpaRepository<Flight, Long> {
             "FROM limitedresultable GROUP BY flight_id HAVING  count(flight_id) >= ?4)\n" +
             "SELECT lrt.flight_id, lrt.seat_number, lrt.price, lrt.conditions, (lrt.boarding_number + lrt.rownum) AS boarding_number\n" +
             "FROM limitedresultable lrt,  test t WHERE rownum <= ?4 AND lrt.flight_id = t.flight_id\n" +
-            "ORDER BY flight_id DESC, seat_number DESC, price DESC")
+            "ORDER BY flight_id ASC, seat_number ASC, price ASC limit 5*?4 OFFSET ?5")
     List<FlightBookingDataProjection> flights(String arrivalCity,
                                               String departureCity,
                                               String fareConditions,
-                                              int amount);
+                                              int amount,
+                                              int skip);
 
 }

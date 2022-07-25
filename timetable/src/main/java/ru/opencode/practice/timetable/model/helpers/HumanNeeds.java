@@ -11,5 +11,8 @@ public record HumanNeeds(
         String fare_conditions,
 
         @NotNull
-        int amount) {
+        int amount,
+
+        @NotNull
+        int skip) {
 }

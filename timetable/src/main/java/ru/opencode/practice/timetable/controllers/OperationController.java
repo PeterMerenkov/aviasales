@@ -50,7 +50,7 @@ public class OperationController {
 
     @PostMapping
     @RequestMapping("/getFlights")
-    public List<FlightBookingDataProjection> takeFlights(@RequestBody HumanNeeds info) {
-        return admineService.takeFlights(info.arrival_city(), info.departure_city(), info.fare_conditions(), info.amount());
+    public  List<PersonTicketView> takeFlights(@RequestBody HumanNeeds info) {
+        return admineService.takeFlights(info.arrival_city(), info.departure_city(), info.fare_conditions(), info.amount(), info.skip());
     }
 }
