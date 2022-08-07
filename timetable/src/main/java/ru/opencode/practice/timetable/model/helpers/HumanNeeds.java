@@ -1,18 +1,21 @@
 package ru.opencode.practice.timetable.model.helpers;
 
 import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record HumanNeeds(
-        @NotNull
-        String arrival_city,
-        @NotNull
-        String departure_city,
-        @NotNull
-        String fare_conditions,
+@Data
+@NoArgsConstructor
+public class HumanNeeds {
 
-        @NotNull
-        int amount,
+        private String arrival_city;
 
-        @NotNull
-        int skip) {
+        private String departure_city;
+
+        private String fare_conditions;
+
+        private int amount;
+
+        private int skip;
+
 }

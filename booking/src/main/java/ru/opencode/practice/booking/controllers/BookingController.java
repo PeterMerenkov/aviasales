@@ -79,16 +79,9 @@ public class BookingController {
 
     @GetMapping
 //    @Transactional
-    public String initData(/*@RequestBody List<TicketBookingData> dataList,*/ Model model) {
+    public String initData(@RequestBody List<TicketBookingData> dataList, Model model) {
 
-        List<TicketBookingData> dataList = new ArrayList<>();
-        TicketBookingData tbd = new TicketBookingData();
-        tbd.setFlightBookingDataList(Arrays.asList(
-                new FlightBookingData(31865, "Economy", 22.5, 0, ""),
-                new FlightBookingData(13524, "Business", 22.5, 0, "")
-        ));
-        dataList.add(tbd);
-
+        //List<TicketBookingData> dataList =
         model.addAttribute("dataList", dataList);
 
 
