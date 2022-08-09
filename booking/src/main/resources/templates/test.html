@@ -14,7 +14,7 @@
 
 <!--        <div th:text="${booking}"></div>-->
 
-        <form action="#" th:action="@{/booking/test}" method="post">
+        <form action="http://localhost:8081/booking/test" method="post">
 
             <div th:each="cData : ${contactData.contactDataList}">
                 <h3 th:text="'Пассажир №' + ${cDataStat.index + 1}"></h3>

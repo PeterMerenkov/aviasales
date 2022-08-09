@@ -1,28 +1,24 @@
 package ru.opencode.practice.timetable.controllers;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.client.RestTemplate;
 import ru.opencode.practice.timetable.model.helpers.HumanNeeds;
 import ru.opencode.practice.timetable.model.helpers.PersonTicketView;
-import ru.opencode.practice.timetable.model.helpers.Test;
 import ru.opencode.practice.timetable.model.helpers.TicketBookingData;
 import ru.opencode.practice.timetable.service.AdmineService;
 
-import java.lang.reflect.Array;
 import java.net.http.HttpClient;
-import java.util.ArrayList;
+import java.net.http.HttpRequest;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Controller
 @RequestMapping("/api/view")
-public class GreetingContoller {
+public class GreetingContoller  {
     @Autowired
     AdmineService admineService;
 
@@ -49,12 +45,16 @@ public class GreetingContoller {
 
     @PostMapping
     @RequestMapping("test/{id}")
-    public String test(@PathVariable int id) {
+    public ResponseEntity<String> test(@PathVariable int id) {
        PersonTicketView a = personTicketViews.get(id);
-       List<TicketBookingData> b = a.getTickets();
+       List<TicketBookingData> dataList = a.getTickets();
 
-       
-        System.out.println("Я тут");
-        return ("booking");
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> entity = new HttpEntity<Object>(dataList, headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:8081/booking", HttpMethod.POST, entity, String.class);
+
+       return responseEntity;
     }
 }

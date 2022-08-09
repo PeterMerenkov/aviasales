@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class TicketBookingData {
-   List<FlightBookingData> flightBookingDataList;
+   private List<FlightBookingData> flightBookingDataList;
 
    public TicketBookingData(List<FlightBookingDataProjection> projections) {
       List<FlightBookingData> flightBookingDataList = new LinkedList<>();

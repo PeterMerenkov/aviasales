@@ -36,7 +36,7 @@ public class BookingController {
 
     @PostMapping("test")
     public String index(@ModelAttribute("dataList") List<TicketBookingData> dataList,
-                        @ModelAttribute("contactData") ContactDataWrapper cdw) {
+                        @ModelAttribute("contactData") ContactDataWrapper cdw, Model model) {
 
         double totalPrice = 0;
         for(TicketBookingData tData : dataList) {
@@ -49,7 +49,8 @@ public class BookingController {
         service.createBooking(booking);
 
         //------------------------------------------------------------------------------------------
-
+        List<Ticket> tickets = new LinkedList<>();
+        List<TicketFlight> ticketFlights= new LinkedList<>();
         for (int i = 0; i < dataList.size(); i++) {
             TicketBookingData tData = dataList.get(i);
 
@@ -60,7 +61,7 @@ public class BookingController {
                     cdw.getContactDataList().get(i),
                     booking
             );
-            service.createTicket(ticket);
+            tickets.add(service.createTicket(ticket));
 
             for (FlightBookingData fData : tData.getFlightBookingDataList()) {
                 Flight flight = service.getFlightById(fData.getFlightId());
@@ -70,18 +71,17 @@ public class BookingController {
                         fData.getConditions(),
                         fData.getPrice()
                 );
-                service.createTicketFlight(tf);
+                ticketFlights.add(service.createTicketFlight(tf));
             }
         }
-
-        return "redirect:/booking";
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticketFlights", ticketFlights);
+        return "result.html";
     }
 
-    @GetMapping
-//    @Transactional
+    @PostMapping
     public String initData(@RequestBody List<TicketBookingData> dataList, Model model) {
 
-        //List<TicketBookingData> dataList =
         model.addAttribute("dataList", dataList);
 
 

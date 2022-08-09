@@ -19,9 +19,9 @@ public class PersonTicketView {
         StringBuilder allSeat_number = new StringBuilder();
 
         for (TicketBookingData ticket: tickets) {
-                for(FlightBookingData flight: ticket.flightBookingDataList) {
+                for(FlightBookingData flight: ticket.getFlightBookingDataList()) {
                     totalPrice = totalPrice + flight.getPrice();
-                    allSeat_number.append(flight.getSeat_number()).append(", ");
+                    allSeat_number.append(flight.getSeatNumber()).append(", ");
                 }
         }
         allSeat_number.delete(allSeat_number.length()-2, allSeat_number.length());

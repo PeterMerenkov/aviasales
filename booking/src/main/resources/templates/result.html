@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Ваш билет создан</h1>
+    <table>
+        <tr>
+            <th>Number</th>
+            <th>PassengerId</th>
+            <th>PassengerName</th>
+            <th>ContactData</th>
+            <th>Booking</th>
+        </tr>
+        <tr th:each="view: ${tickets}">
+            <td style="text-align:center;" th:text="${view.getNumber()}"></td>
+            <td style="text-align:center;" th:text="${view.getPassengerId()}"></td>
+            <td style="text-align:center;" th:text="${view.getPassengerName()}"></td>
+            <td style="text-align:center;" th:text="${view.getContactData()}"></td>
+            <td style="text-align:center;" th:text="${view.getBooking()}"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Price</th>
+            <th>Conditions</th>
+        </tr>
+        <tr th:each="view: ${ticketFlights}">
+            <td style="text-align:center;" th:text="${view.getPrice()}"></td>
+            <td style="text-align:center;" th:text="${view.getConditions()}"></td>
+        </tr>
+    </table>
+</body>
+</html>

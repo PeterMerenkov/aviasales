@@ -33,18 +33,18 @@ public class BookingService {
         this.ticketFlightRepo = ticketFlightRepo;
     }
 
-    public void createBooking(Booking booking) {
-        repo.save(booking);
+    public Booking createBooking(Booking booking) {
         log.info("Saved booking - {}", booking);
+        return repo.save(booking);
     }
 
     public Ticket getTicketById(String number) {
         return ticketRepo.findByNumber(number);
     }
 
-    public void createTicket(Ticket ticket) {
-        ticketRepo.save(ticket);
+    public Ticket createTicket(Ticket ticket) {
         log.info("Saved ticket - {}", ticket);
+        return ticketRepo.save(ticket);
     }
 
     public List<Ticket> getTickets() {
@@ -62,9 +62,9 @@ public class BookingService {
         return ticketFlightRepo.findByTicketFlightId(new TicketFlightId(ticket, flight));
     }
 
-    public void createTicketFlight(TicketFlight ticketFlight) {
-        ticketFlightRepo.save(ticketFlight);
+    public TicketFlight createTicketFlight(TicketFlight ticketFlight) {
         log.info("Saved TicketFlight - {}", ticketFlight);
+        return ticketFlightRepo.save(ticketFlight);
     }
 
     public String getFreeTicketNum() {
